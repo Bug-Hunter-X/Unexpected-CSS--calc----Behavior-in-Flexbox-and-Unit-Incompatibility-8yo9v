@@ -1,0 +1,34 @@
+/* Correct usage of calc() in flexbox */
+.container {
+  display: flex;
+}
+
+.item {
+  flex: 1;
+  /* Correct way to use calc() with padding and margin */
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+  width: calc(100% - 20px); /* Subtract padding and margin*/
+}
+
+/* Correct handling of unit incompatibility */
+.element {
+  width: calc(50% - 10px);
+  /* Correct: Subtract pixels from a percentage correctly */
+}
+
+/* Converting units before use in calc() for better compatibility */
+:root {
+  --item-width: 200px;
+}
+
+.anotherElement {
+  width: calc(var(--item-width) * 0.5); /* 50% */
+  /* width: calc(100px - 2em); /* Correct; pixels and ems work together */
+}
+/* Avoid this kind of unit mismatch. It's unpredictable */
+/*.element {
+  width: calc(50% - 10px);
+  /* Incorrect: Direct subtraction of pixels from percentage */
+}*/
